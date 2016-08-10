@@ -1,12 +1,14 @@
 # Markdown Doc Reader
 
-Application web pour lire les documentations Markdown, notamment gérées via GitHub(dépôt GitHub, wiki GitHub ou GitBook).
-Fonctionne aussi avec un simple dossier contenant des fichiers Markdown.
+Application web pour lire les documentations gérées via GitHub (dépôt GitHub, wiki GitHub ou GitBook) ou accessibles directement dans un simple dossier contenant des fichiers Markdown.
+
+Elle permet séparer la gestion et la consultation de la documentation en unifiant la présentation.
+Elle facilite aussi l'intégration dans des iframes (les "header" et "footer" du site peuvent être désactivés via le fichier de configuration).
 
 ## Requis
 
-L'installation de gh-docreader nécessite simplement un serveur PHP.
-Le script PHP sert uniquement à premettre les appels "cross domain" en javascript. Il peut facilement être remplacé par un autre script ou proxy.
+L'installation de mkd-docreader nécessite un serveur PHP.
+Le script PHP premet les appels "cross domain" en javascript. Il peut facilement être remplacé par un autre script.
 
 ## Installation et configuration
 
@@ -21,9 +23,13 @@ Elle se fait en 2 étapes:
 
 - Jquery
 - Twitter Bootstrap
-- showdown
+- Showdown
 
 ### PHP
 
 PHP est utilisé uniquement pour premettre les appels "cross domain" en javascript.
 Il peut facilement être remplacé par un autre script ou proxy.
+
+## démonstration
+
+Cf. https://www.cigalsace.org/tools/mkd-docreader/ qui permet la consultation en direct du wiki du module cadastrapp de georchestra (https://github.com/georchestra/cadastrapp/wiki).
