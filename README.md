@@ -5,7 +5,7 @@ Fonctionne aussi avec un simple dossier contenant des fichiers Markdown.
 
 ## Requis
 
-L'installation de gh-docreader nécessite simplement un serveur PHP.
+L'installation de mkd-docreader nécessite simplement un serveur PHP.
 Le script PHP sert uniquement à premettre les appels "cross domain" en javascript. Il peut facilement être remplacé par un autre script ou proxy.
 
 ## Installation et configuration
