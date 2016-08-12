@@ -40,4 +40,5 @@ PHP est utilisé uniquement pour premettre les appels "cross domain" en javascri
 
 ## Démo
 
-Cf. <http://www.cigalsace.net/mkd-docreader/0.0.4> pour consulter consultation en direct du wiki du module cadastrapp de georchestra (<http://github.com/georchestra/cadastrapp/wiki>). Cf. <http://www.cigalsace.net/mkd-docreader/0.0.4/index.html?sidebar=0&docname=mkd-docreader> pour consulter cette page de documentation.
+Cf. <http://www.cigalsace.net/mkd-docreader/0.0.4> pour consulter consultation en direct du wiki du module cadastrapp de georchestra (<http://github.com/georchestra/cadastrapp/wiki>).
+Cf. <http://www.cigalsace.net/mkd-docreader/0.0.4/index.html?sidebar=0&docname=mkd-docreader> pour consulter cette page de documentation.
