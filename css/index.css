@@ -2,14 +2,15 @@
  * Style tweaks
  */
 
-html, body {
+html,
+body {
     overflow-x: hidden;
     /* Prevent scroll on narrow devices */
 }
 
 body {
-    padding-top: 70px;
-    padding-bottom: 70px;
+    /*padding-top: 70px;
+    padding-bottom: 70px;*/
 }
 
 

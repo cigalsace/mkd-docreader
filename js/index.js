@@ -6,30 +6,34 @@ $(document).ready(function() {
     // Display header, footer and sidebar
     //--------------------------------------------------------------
 
-    if (header) {
+    if (config.header) {
         $("#header").removeClass("hidden");
+        $("body").css('padding-top', '70px');
     }
-    if (footer) {
+    if (config.footer) {
         $("#footer").removeClass("hidden");
+        $("body").css('padding-bottom', '70px');
     }
-    if (sidebar) {
+    if (config.sidebar) {
         $("#sidebar").removeClass("hidden");
+        $("#content").addClass("col-sm-9");
     }
-    if (display_page_url) {
+    if (config.display_page_url) {
         $("#page_url").removeClass("hidden");
     }
 
     //--------------------------------------------------------------
     // Load variables values
     //--------------------------------------------------------------
-    $("title").html(title);
-    $("#project_name").html(project_name);
-    $("#slogan").html(slogan);
-    $("#copyright").html(copyright);
 
-    $("#contact").attr('href', contact_href);
-    $("#about").attr('href', about_href);
-    $("#github").attr('href', github_href);
+    $("title").html(config.title);
+    $("#project_name").html(config.project_name);
+    $("#slogan").html(config.slogan);
+    $("#copyright").html(config.copyright);
+
+    $("#contact").attr('href', config.contact_href);
+    $("#about").attr('href', config.about_href);
+    $("#github").attr('href', config.github_href);
 
     //--------------------------------------------------------------
     // Toggle off canvas
@@ -67,8 +71,8 @@ $(document).ready(function() {
             url = main_url + gh_page;
         }
         // Check for file extension
-        if (url.substr(url.lastIndexOf('.') + 1) != file_ext) {
-            url = url + '.' + file_ext;
+        if (url.substr(url.lastIndexOf('.') + 1) != config.file_ext) {
+            url = url + '.' + config.file_ext;
         }
         return url;
     }
@@ -119,7 +123,7 @@ $(document).ready(function() {
         return false;
     }
 
-    gh_menu_url = getUrl(main_url, gh_user, gh_repos, gh_branch, lang + menu_page);
+    gh_menu_url = getUrl(config.main_url, config.gh_user, config.gh_repos, config.gh_branch, config.lang + config.menu_page);
 
     // Load menu
     $.post({
@@ -130,10 +134,10 @@ $(document).ready(function() {
         success: function(data) {
             var converter = new showdown.Converter();
                 content = converter.makeHtml(data.content);
-            $('#menu').html(content);
+            $('#sidebar').html(content);
         },
         error: function(data) {
-            $('#menu').html('Menu page "' + gh_menu_url + '" not found.');
+            $('#sidebar').html('Menu page "' + config.gh_menu_url + '" not found.');
         },
         complete: function(data) {
             // console.log('Menu loaded.');
@@ -141,21 +145,25 @@ $(document).ready(function() {
     });
 
     // Load default_page
-    var gh_content_url = getUrl(main_url, gh_user, gh_repos, gh_branch, lang + default_page);
+    var gh_content_url = getUrl(config.main_url, config.gh_user, config.gh_repos, config.gh_branch, config.lang + config.default_page);
     getPage(proxy_url, gh_content_url, '#content', '');
 
     // Load content on link clicked
-    $('body').on('click', 'a:not(.local)', function(event) {
-        //$('a').click(function(event) {
+    $('#page').on('click', 'a', function(event) {
         event.preventDefault();
+        var url = $(this).attr('href');
+        abs_url = /^(?:[a-z]+:)?\/\//i.test(url);
+        if (abs_url) {
+            var win = window.open(url, '_blank');
+        } else {
+            var page = encodeURI(decodeURIComponent(url.split("#")[0]));
+            var hash = $(this).attr('href').split("#")[1];
 
-        // var page = encodeURI($(this).attr('href').split("#")[0]);
-        var page = encodeURI(decodeURIComponent($(this).attr('href').split("#")[0]));
-        var hash = $(this).attr('href').split("#")[1];
-
-        // Get page content
-        gh_content_url = getUrl(main_url, gh_user, gh_repos, gh_branch, lang + page);
-        getPage(proxy_url, gh_content_url, '#content', hash);
+            // Get page content
+            gh_content_url = getUrl(config.main_url, config.gh_user, config.gh_repos, config.gh_branch, config.lang + page);
+            getPage(proxy_url, gh_content_url, '#content', hash);
+        }
+        return false;
     });
 
 });
