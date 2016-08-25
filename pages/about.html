@@ -1,0 +1,12 @@
+<div class="modal-header">
+    <button type="button" class="close" ng-click="modal.ok()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <h3 class="modal-title" id="modal-title">I'm a modal!</h3>
+</div>
+<div class="modal-body" id="modal-body">
+    {{modal.info}} <br />
+    {{modal.info.content_url}} <br />
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="modal.ok()">OK</button>
+    <!-- <button class="btn btn-warning" type="button" ng-click="app.cancel()">Cancel</button> -->
+</div>

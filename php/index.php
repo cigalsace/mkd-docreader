@@ -38,6 +38,12 @@
     if (! $url) {
         $url = post('url', $config['url']);
     }
+    if (! $url) {
+        $inputJSON = file_get_contents('php://input');
+        $data = json_decode( $inputJSON, TRUE );
+        $url = $data['url'];
+    }
+    // print_r($data);
 
     // Get page content
     $arrContextOptions=array(
@@ -52,7 +58,7 @@
     $output = array(
         'success' => false,
         'url' => $url,
-        'content' => "Erreur: le page ne peut pas être chargée."
+        'content' => "Erreur: la page ne peut pas être chargée."
     );
 
     if ($data) {

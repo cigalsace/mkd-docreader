@@ -1,101 +1,136 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" ng-app="app">
 
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Not defined</title>
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="robots" content="noindex,nofollow" />
+		<title>{{app.data.config.title}}</title>
+		<!-- Bootstrap -->
+		<link href="./lib/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+		<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+		<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		<link rel="stylesheet" href="./css/app.css" />
+		<style type="text/css">
+		</style>
+		<base href=".">
+	</head>
 
-    <!-- Bootstrap -->
-    <link href="libs/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/index.css" rel="stylesheet">
+	<body ng-controller="AppCtrl as app" ng-class="{header: app.data.config.doc.header, footer: app.data.config.doc.footer}">
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-            <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
-</head>
+		<nav id="header" class="navbar navbar-fixed-top navbar-default" ng-show="app.data.config.doc.header">
+			<div class="container-fluid">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a href="#" class="navbar-brand" id="project_name">{{app.data.config.doc.project_name}}</a>
+				</div>
+				<div id="navbar" class="collapse navbar-collapse">
+					<div class="nav navbar-nav navbar-left">
+						<p class="navbar-text" id="slogan">{{app.data.config.doc.slogan}}</p>
+					</div>
 
-<body>
-    <nav id="header" class="navbar navbar-fixed-top navbar-default hidden">
-        <div class="container-fluid">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a href="#" class="navbar-brand" id="project_name">Not defined</a>
-            </div>
-            <div id="navbar" class="collapse navbar-collapse">
-                <div class="nav navbar-nav navbar-left">
-                    <p class="navbar-text" id="slogan">Not defined</p>
-                </div>
-                <!--<ul class="nav navbar-nav">
-                        <li></li>
-                    </ul>-->
-                <div class="nav navbar-nav navbar-right">
-                    <p class="navbar-text small hidden" id="page_url">Not defined</p>
-                </div>
-            </div>
-            <!-- /.nav-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
-    <!-- /.navbar -->
-    <div class="container-fluid">
-        <div class="row row-offcanvas row-offcanvas-left" id="page">
-            <div class="col-xs-6 col-sm-3 sidebar-offcanvas hidden" id="sidebar">
-                Menu
-            </div>
-            <div class="col-xs-6 col-sm-3">
-            </div>
-            <div class="col-xs-12" id="content">
-                <!-- <h1>Hello, world!</h1> -->
-                Content
-                <p class="pull-right visible-xs">
-                    <!-- <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button> -->
-                    <button type="button" class="btn btn-default btn-xs" data-toggle="offcanvas">
-                        <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Menu
-                    </button>
+                    <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#" ng-click="app.openModal(app.data.config.help_page)">Aide</a></li>
+                    <li class="btn-group" uib-dropdown is-open="status.docs.isopen">
+                      <a href="" id="documentations" uib-dropdown-toggle ng-disabled="disabled">
+                        Documentations <span class="caret"></span>
+                      </a>
+                      <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="documentations">
+                        <li ng-repeat="doc in app.data.config.docs">
+                            <a href="" ng-click="app.changeDoc({docname: doc.docname})">
+                                <div>
+                                    {{doc.docname}}<br />
+                                    <em>{{doc.description}}</em>
+                                </div>
+                            </a>
+                        </li>
+                      </ul>
+                    </li>
+                    <li class="btn-group" uib-dropdown is-open="status.langs.isopen" ng-if="app.data.config.doc.langs.length > 1">
+                      <a href="" id="languages" uib-dropdown-toggle ng-disabled="disabled">
+                        Langues <span class="caret"></span>
+                      </a>
+                      <ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="languages">
+                        <li ng-repeat="lang in app.data.config.doc.langs">
+                            <a href="" ng-click="app.changeLang(lang.value)">
+                                <div>
+                                    {{lang.label}}
+                                </div>
+                            </a>
+                        </li>
+                      </ul>
+                    </li>
+                  </ul>
+				</div>
+				<!-- /.nav-collapse -->
+			</div>
+			<!-- /.container -->
+		</nav>
+		<!-- /.navbar -->
+
+		<div class="container-fluid">
+			<div class="row row-offcanvas row-offcanvas-left" id="page">
+				<div mkd-page mkd-page-url="{{app.data.sidebar_url}}" mkd-type="sidebar_url" class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" ng-show="app.data.config.doc.sidebar">
+				</div>
+				<div class="col-xs-6 col-sm-3">
+				</div>
+                <!-- TODO: Enlever ng-bind-html -->
+				<div mkd-page mkd-page-url="{{app.data.content_url}}" mkd-type="content_url" class="col-xs-12" id="content" ng-class="{'col-sm-9': app.data.config.doc.sidebar}">
+					<p class="pull-right visible-xs">
+						<button type="button" class="btn btn-default btn-xs" data-toggle="offcanvas">
+							<span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span> Menu
+						</button>
+					</p>
+				</div>
+				<!--/.col-xs-12.col-sm-9-->
+                <p class="small pull-right" id="page_url">
+                    <em> - <a ng-href="{{app.data.content_url}}" target="_blank"> {{app.data.content_url}} </a> - </em>
                 </p>
-            </div> <!--/.col-xs-12.col-sm-9-->
-            <!--/.sidebar-offcanvas-->
-        </div>
-        <!--/row-->
+				<!--/.sidebar-offcanvas-->
+			</div>
+			<!--/row-->
 
-    </div>
-    <!--/.container-->
+		</div>
+		<!--/.container-->
 
-        <nav id="footer" class="navbar navbar-default navbar-fixed-bottom hidden">
-            <div class="container-fluid">
-                <p class="navbar-text navbar-left">
-                    <a id="contact" href="#" target="_blank">Contact</a> -
-                    <a id="about" href="#" target="_blank">About</a> -
-                    <a id="github" href="#" target="_blank">Github</a>
-                </p>
-                <p id="copyright" class="navbar-text navbar-right">Not defined</p>
-            </div>
-        </nav>
+		<nav id="footer" class="navbar navbar-default navbar-fixed-bottom" ng-show="app.data.config.doc.footer">
+			<div class="container-fluid">
+				<p class="navbar-text navbar-left">
+					<a id="contact" ng-href="{{app.data.config.doc.contact_href}}" target="_blank">Contact</a> -
+					<a id="about" href="#" ng-click="app.openModal(app.data.config.doc.about_page)">About</a> -
+					<a id="github" ng-href="{{app.data.config.doc.github_href}}" target="_blank">Github</a>
+				</p>
+				<p id="copyright" class="navbar-text navbar-right" ng-bind-html="app.data.config.doc.copyright"></p>
+			</div>
+		</nav>
 
-        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-        <script src="libs/jquery/3.1.0/jquery-3.1.0.min.js"></script>
-        <!-- Showndows -->
-        <script src="libs/showdown/1.4.2/showdown.min.js"></script>
-        <!-- <script src="libs/showdown-table/1.0.1/showdown-table.min.js"></script> -->
-        <!-- <script src="libs/showdown-github/1.0.0/showdown-github.min.js"></script> -->
-        <!-- Include all compiled plugins (below), or include individual files as needed -->
-        <script src="libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <!-- App javacript files -->
-        <script src="js/helpers.js"></script>
-        <script src="js/config.js"></script>
-        <script src="js/index.js"></script>
+		<script src="./lib/angular/angular-1.5.8.min.js"></script>
+		<script src="./lib/angular/angular-sanitize-1.5.8.min.js"></script>
+		<script src="./lib/ui-bootstrap/ui-bootstrap-tpls-2.1.0.min.js"></script>
+		<!-- Showndows -->
+		<script src="./lib/showdown/showdown.min.js"></script>
+		<!-- App javacript files -->
+		<script src="./config/config.js"></script>
+		<script src="./app/app.js"></script>
+		<script src="./app/app.factories.js"></script>
+		<script src="./app/directives/app.directives.mkdPage.js"></script>
+		<script src="./app/directives/app.directives.a.js"></script>
+		<script src="./app/app.controllers.js"></script>
+		<!-- <script src="js/index.js"></script> -->
 
-    </body>
+		<script language="javascript" type="text/javascript">
+			// console.log('app start');
+		</script>
+	</body>
 
 </html>
