@@ -68,5 +68,5 @@ Les choix sont réalisés afin que:
 
 ## Démo
 
-Cf. <http://www.cigalsace.net/mkd-docreader/0.1.0> pour consulter consultation en direct du wiki du module cadastrapp de georchestra (<http://github.com/georchestra/cadastrapp/wiki>).
-Cf. <http://www.cigalsace.net/mkd-docreader/0.1.0/index.html?sidebar=0&docname=mkd-docreader> pour consulter cette page de documentation.
+Cf. <http://www.geograndest.net/tools/mkd-docreader/0.1.2> pour consulter consultation en direct du wiki du module cadastrapp de georchestra (<http://github.com/georchestra/cadastrapp/wiki>).
+Cf. <http://www.geograndest.net/tools/mkd-docreader/0.1.2/index.html?sidebar=0&docname=mkd-docreader> pour consulter cette page de documentation.
