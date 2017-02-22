@@ -9,6 +9,7 @@
 		<title>{{app.data.config.title}}</title>
 		<!-- Bootstrap -->
 		<link href="./lib/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+		<link href="./lib/foundation/6.2.3/css/foundation.min.css" rel="stylesheet">
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
 		<!--[if lt IE 9]>
@@ -79,11 +80,11 @@
 		<!-- /.navbar -->
 
 		<div class="container-fluid">
-			<div class="row row-offcanvas row-offcanvas-left" id="page">
+			<!--<div class="row row-offcanvas row-offcanvas-left" id="page">-->
 				<div mkd-page mkd-page-url="{{app.data.sidebar_url}}" mkd-type="sidebar_url" class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" ng-show="app.data.config.doc.sidebar">
 				</div>
-				<div class="col-xs-6 col-sm-3">
-				</div>
+				<!--<div class="col-xs-6 col-sm-3">
+				</div>-->
                 <!-- TODO: Enlever ng-bind-html -->
 				<div mkd-page mkd-page-url="{{app.data.content_url}}" mkd-type="content_url" class="col-xs-12" id="content" ng-class="{'col-sm-9': app.data.config.doc.sidebar}">
 					<p class="pull-right visible-xs">
@@ -94,10 +95,13 @@
 				</div>
 				<!--/.col-xs-12.col-sm-9-->
                 <p class="small pull-right" id="page_url">
-                    <em> - <a ng-href="{{app.data.content_url}}" target="_blank"> {{app.data.content_url}} </a> - </em>
+                    <em>
+                    <a ng-href="{{app.data.content_url}}" target="_blank">Page content</a>
+                    / <a id="github" ng-href="{{app.data.config.doc.github_href}}" target="_blank">Project on Github</a>
+                    </em>
                 </p>
 				<!--/.sidebar-offcanvas-->
-			</div>
+			<!--</div>-->
 			<!--/row-->
 
 		</div>

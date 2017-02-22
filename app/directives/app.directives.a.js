@@ -36,7 +36,11 @@ function aClicked(AppDataSrv, PageSrv) {
                     var win = window.open(encodeURI(url), '_blank');
                 } else {
                     var page = encodeURI(decodeURIComponent(url.split("#")[0]));
-                    var hash = encodeURI(decodeURIComponent(url.split("#")[1]));
+                    if (!page) {
+                        page = AppDataSrv.config.doc.default_page;
+                    }
+                    var hash = url.split("#")[1];
+                    console.log(page, ' - ', hash);
 
                     scope.$apply(function() {
                         var data = AppDataSrv;

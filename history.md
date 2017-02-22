@@ -1,5 +1,18 @@
 # History
 
+## V. 0.1.2
+
+**22/02/2017** - Adaptation mineurs pour intégration doc cadastr_app au site CIGAL
+
+- Suppression des éléments CSS relatif à "off-canvas"
+- Ajout de cadastrapp_userguide dans le fichier de configuration
+- Modification de slien en bas de page
+- Affichage du contenu en "container-fluid": ne fonctionnait pas correctement
+
+## V. 0.1.1
+
+**15/09/2016** - Diverses adaptations
+
 ## V. 0.1.0
 
 **25/08/16** - Publication of new version

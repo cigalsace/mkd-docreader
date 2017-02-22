@@ -24,14 +24,15 @@ body.footer {
 /*
  * Off Canvas
  */
-
+/*
 #sidebar {
     border-right: 1px solid #ccc;
     padding-bottom: 100%;
     margin-bottom: -100%;
     position: fixed;
 }
-
+*/
+/*
 @media screen and (max-width: 767px) {
     .row-offcanvas {
         position: relative;
@@ -47,24 +48,19 @@ body.footer {
     }
     .row-offcanvas-right .sidebar-offcanvas {
         right: -50%;
-        /* 6 columns */
     }
     .row-offcanvas-left .sidebar-offcanvas {
         left: -50%;
-        /* 6 columns */
     }
     .row-offcanvas-right.active {
         right: 50%;
-        /* 6 columns */
     }
     .row-offcanvas-left.active {
         left: 50%;
-        /* 6 columns */
     }
     .sidebar-offcanvas {
         position: absolute;
         top: 0;
         width: 50%;
-        /* 6 columns */
     }
 }
